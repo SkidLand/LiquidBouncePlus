@@ -43,7 +43,7 @@ class Velocity : Module() {
     private val horizontalExplosionValue = FloatValue("HorizontalExplosion", 0F, 0F, 1F)
     private val verticalExplosionValue = FloatValue("VerticalExplosion", 0F, 0F, 1F)
     private val modeValue = ListValue("Mode", arrayOf("Cancel", "Simple", "AACv4", "AAC4Reduce", "AAC5Reduce", "AAC5.2.0", "AAC", "AACPush", "AACZero",
-            "Reverse", "SmoothReverse", "Jump", "Glitch", "Phase", "Matrix", "Legit",  "AEMine"), "Simple") // later
+            "Reverse", "SmoothReverse", "Jump", "Glitch", "Phase", "Matrix", "Legit", "AEMine"), "Simple") // later
 
     private val aac5KillAuraValue = BoolValue("AAC5.2.0-Attack-Only", true, { modeValue.get().equals("aac5.2.0", true) })
 
@@ -276,12 +276,11 @@ class Velocity : Module() {
                 }
 
                 "aac4reduce" -> {
-                    velocityInput = true
                     packet.motionX = (packet.getMotionX() * 0.6).toInt()
                     packet.motionZ = (packet.getMotionZ() * 0.6).toInt()
                 }
 
-                "aac", "aac5reduce", "reverse", "aacv4", "smoothreverse", "aaczero" -> velocityInput = true
+                "aac", "aac5reduce", "reverse", "aacv4", "aac4reduce", "smoothreverse", "aaczero" -> velocityInput = true
 
                 "aac5.2.0" -> {
                     event.cancelEvent()
